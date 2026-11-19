@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 import { site } from '../data/site';
 interface Props { title?: string; description?: string; noindex?: boolean }
 const { title = 'zedzed — Studio de design et de développement web', description = site.description, noindex = false } = Astro.props;
@@ -41,6 +42,7 @@ const jsonld = {
   <meta property="og:image" content={ogImage}>
   <meta name="twitter:card" content="summary_large_image">
   <script is:inline>document.documentElement.classList.add('js')</script>
+  <Analytics />
   <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
 </head>
 <body>
