@@ -224,7 +224,8 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
 .book-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .book h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-.02em}
 .book-head p{margin:4px 0 0;font-size:14px;color:var(--encre-douce)}
-.book-mark{flex:none;width:40px;height:40px;border-radius:50%;background:var(--cobalt);color:var(--lait);display:grid;place-items:center;font-weight:800;font-size:20px;line-height:1;padding-bottom:3px;box-sizing:border-box}
+.book-mark{flex:none;display:block;line-height:0}
+.book-mark svg{display:block}
 .book-days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .book-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .book button{font:inherit;border:0;cursor:pointer;border-radius:12px;background:#fff;color:var(--encre);box-shadow:inset 0 0 0 1px rgba(13,18,64,.1);transition:background-color 200ms ease,color 200ms ease,box-shadow 200ms ease,transform 160ms var(--ease);touch-action:manipulation}
