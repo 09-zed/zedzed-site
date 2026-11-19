@@ -4,17 +4,20 @@
 
   // Flou du bas : disparaît en arrivant tout en bas de la page, pour garder le footer net
   const edge = document.querySelector('.edge-blur');
-  const edgeCheck = () => edge.classList.toggle('off', innerHeight + scrollY >= document.documentElement.scrollHeight - 8);
-  addEventListener('scroll', edgeCheck, { passive: true }); addEventListener('resize', edgeCheck); edgeCheck();
+  if (edge) {
+    const edgeCheck = () => edge.classList.toggle('off', innerHeight + scrollY >= document.documentElement.scrollHeight - 8);
+    addEventListener('scroll', edgeCheck, { passive: true }); addEventListener('resize', edgeCheck); edgeCheck();
+  }
 
-  // Footer : hauteur réservée sous la page, logo qui monte pendant la révélation, 
+  // Footer : hauteur réservée sous la page, logo qui monte pendant la révélation
   const ftWrap = document.querySelector('.ft-wrap'), ft = document.querySelector('.ft'), ftLogo = document.querySelector('.ft-logo span');
+  if (ftWrap && ft && ftLogo) {
   const ftSize = () => { ftWrap.style.setProperty('--fh', ft.offsetHeight + 'px'); ft.classList.toggle('flat', ft.offsetHeight > innerHeight - 40); };
   addEventListener('resize', ftSize);
   new ResizeObserver(ftSize).observe(ft); ftSize();
   const ftMove = () => { const r = ftWrap.getBoundingClientRect(); const p = Math.min(Math.max((innerHeight - r.top) / r.height, 0), 1); ftLogo.style.setProperty('--ly', (18 * (1 - p)).toFixed(2) + '%'); };
   if (!reduce) { addEventListener('scroll', () => requestAnimationFrame(ftMove), { passive: true }); ftMove(); } else ftLogo.style.setProperty('--ly', '0%');
-
+  }
 
   // Footer : calendrier Cal.com, chargé seulement quand on approche du bas de page
   const calBox = document.getElementById('cal-zedzed');
@@ -48,6 +51,7 @@
     }), { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
     document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
   }
+  if (document.querySelector('.manifesto .big')) {
   const big = document.querySelector('.manifesto .big');
   const wrapWords = (node) => {
     [...node.childNodes].forEach(n => {
@@ -71,11 +75,10 @@
     words.forEach((w, i) => w.classList.toggle('on', i < n));
   };
   if (!reduce) { addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true }); paint(); }
-
-
+  }
 
   // Méthode : l'image suit l'étape active
-  {
+  if (document.querySelector('.method ol')) {
   const steps = [...document.querySelectorAll('[data-step]')];
   const frames = [...document.querySelectorAll('.story-media .frame')];
   let stepCur = 0;

@@ -8,7 +8,7 @@ const projets = defineCollection({
   schema: z.object({
     nom: z.string(),
     secteur: z.string(),
-    image: z.string(),          // chemin dans public/, ex. /img/proj-coverlys-mockup.webp
+    image: z.string(),          // chemin dans public/, ex. /img/proj-coverlys-mockup.webp — prévoir aussi les versions -640, -1000 et -1400.webp
     alt: z.string(),
     largeur: z.number(),
     hauteur: z.number(),
