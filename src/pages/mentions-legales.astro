@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+---
+<Base title="Mentions légales — zedzed" description="Mentions légales du site zed-zed.com.">
+  <Nav />
+  <main class="legal grid-bg">
+    <div class="wrap legal-in">
+      <h1>Mentions légales</h1>
+
+      <h2>Éditeur du site</h2>
+      <p>[Nom de l’entreprise ou nom et prénom de l’entrepreneur]<br>
+      [Forme juridique, ex. entreprise individuelle, SASU…] — SIRET [numéro]<br>
+      [Adresse du siège]<br>
+      E-mail&nbsp;: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p>Directeur de la publication&nbsp;: [Prénom Nom]</p>
+
+      <h2>Hébergement</h2>
+      <p>Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis — vercel.com</p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>Les textes, illustrations, logos et le code de ce site appartiennent à zedzed, sauf mention contraire. Les captures de projets sont reproduites avec l’accord des clients concernés. Toute reproduction sans autorisation est interdite.</p>
+
+      <h2>Données personnelles</h2>
+      <p>Ce site ne dépose aucun cookie de mesure d’audience ni de publicité. Quand vous réservez un appel, la prise de rendez-vous passe par Cal.com, qui traite votre nom et votre adresse e-mail uniquement pour organiser l’appel. Quand vous nous écrivez, votre message sert seulement à vous répondre.</p>
+      <p>Vous pouvez demander à consulter, corriger ou supprimer vos données à tout moment en écrivant à <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </main>
+  <Footer />
+  <script src="../scripts/site.js"></script>
+</Base>
+<style>
+  .legal{padding:clamp(140px,16vw,200px) 0 clamp(80px,10vw,140px)}
+  .legal-in{max-width:760px}
+  .legal h1{margin:0 0 48px;font-weight:700;font-size:clamp(44px,6vw,96px);line-height:.95;letter-spacing:-.04em}
+  .legal h2{margin:40px 0 12px;font-size:22px;font-weight:700;letter-spacing:-.02em}
+  .legal p{margin:0 0 12px;font-size:17px;line-height:1.6;color:var(--encre-douce)}
+  .legal a{color:var(--cobalt)}
+</style>

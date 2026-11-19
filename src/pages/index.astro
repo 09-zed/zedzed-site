@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import EdgeBlur from '../components/EdgeBlur.astro';
+import Hero from '../components/Hero.astro';
+import Projets from '../components/Projets.astro';
+import Studio from '../components/Studio.astro';
+import Methode from '../components/Methode.astro';
+import Avis from '../components/Avis.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+---
+<Base>
+  <Nav />
+  <EdgeBlur />
+  <Hero />
+  <main>
+    <Projets />
+    <Studio />
+    <Methode />
+    <Avis />
+    <Faq />
+    <Contact />
+  </main>
+  <Footer />
+  <Cursor />
+  <script src="../scripts/site.js"></script>
+</Base>

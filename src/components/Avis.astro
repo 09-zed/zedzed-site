@@ -1,0 +1,22 @@
+---
+import { avis } from '../data/avis';
+---
+{avis.length > 0 && (
+<section class="section grid-bg" id="avis" data-reveal>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="mask"><span>Ils en parlent</span></span></h2>
+        <p data-up>Ce que nos clients disent du travail, et ce que ça a changé pour eux.</p>
+      </div>
+      <div class="reviews">
+        {avis.map((a, i) => (
+          <figure class="review" data-up style={`--i:${i}`}>
+            <blockquote>{a.texte}</blockquote>
+            {a.resultat && <p class="result">{a.resultat}</p>}
+            <figcaption><b>{a.nom}</b><span>{a.metier}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

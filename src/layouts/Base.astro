@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+interface Props { title?: string; description?: string; noindex?: boolean }
+const { title = 'zedzed — Studio de design et de développement web à Strasbourg', description = site.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL('/og.jpg', site.url).href;
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'zedzed',
+  description: site.description,
+  url: site.url,
+  email: site.email,
+  image: ogImage,
+  address: { '@type': 'PostalAddress', addressLocality: site.ville, addressRegion: site.region, addressCountry: 'FR' },
+  areaServed: [{ '@type': 'AdministrativeArea', name: 'Grand Est' }, { '@type': 'AdministrativeArea', name: 'Alsace' }],
+  ...(site.linkedin ? { sameAs: [site.linkedin] } : {}),
+};
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  {noindex && <meta name="robots" content="noindex">}
+  <meta name="theme-color" content="#2836D9">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="zedzed">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta name="twitter:card" content="summary_large_image">
+  <script is:inline>document.documentElement.classList.add('js')</script>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />
+</head>
+<body>
+  <slot />
+</body>
+</html>

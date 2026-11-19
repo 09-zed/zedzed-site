@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+<Base title="Page introuvable — zedzed" noindex>
+  <Nav />
+  <main class="nf grid-bg grid-dark">
+    <div class="wrap nf-in">
+      <div class="nf-art">
+        <img src="/img/ill-404.webp" alt="" width="1448" height="1086">
+        <span aria-hidden="true">404</span>
+      </div>
+      <div class="nf-txt">
+        <h1>Ce cadre est vide.</h1>
+        <p>La page que vous cherchez n’existe pas, ou plus. Le reste du site, lui, est bien là.</p>
+        <a class="btn" href="/"><span class="t"><span>Retour à l’accueil</span><span aria-hidden="true">Retour à l’accueil</span></span></a>
+      </div>
+    </div>
+  </main>
+</Base>
+<style>
+  .nf{min-height:100svh;background:var(--cobalt);color:var(--lait);display:flex;align-items:center}
+  .nf-in{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:center;padding-top:120px;padding-bottom:64px}
+  .nf-art{grid-column:1/8;position:relative}
+  .nf-art img{display:block;width:100%;height:auto}
+  .nf-art span{position:absolute;left:50%;top:50%;transform:translate(-50%,-52%) rotate(-6deg);font-weight:800;font-variation-settings:"opsz" 96;font-size:clamp(56px,9vw,140px);letter-spacing:-.05em;color:var(--lait)}
+  .nf-txt{grid-column:8/13;padding-left:16px}
+  .nf h1{margin:0 0 16px;font-weight:700;font-size:clamp(36px,4vw,64px);line-height:1;letter-spacing:-.04em}
+  .nf p{margin:0 0 32px;font-size:18px;line-height:1.55;color:var(--brume);max-width:36ch}
+  @media (max-width:820px){.nf-in{grid-template-columns:1fr}.nf-art,.nf-txt{grid-column:1;padding-left:0}}
+</style>

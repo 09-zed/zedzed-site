@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b.data.ordre);
+---
+<section class="section grid-bg" id="travaux" data-reveal>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="mask"><span>Projets</span></span></h2>
+        <p data-up>Des sites et des outils pour des entreprises d’Alsace et des Vosges, chacun dessiné pour son métier.</p>
+      </div>
+      <div class="projects" data-reveal>
+        {projets.map((p, i) => {
+          const Tag = p.data.lien ? 'a' : 'div';
+          return (
+            <Tag class="project" href={p.data.lien} target={p.data.lien ? '_blank' : undefined} rel={p.data.lien ? 'noopener' : undefined} data-cursor={p.data.lien ? 'Voir' : undefined} data-up style={`--i:${i}`}>
+              <div class="pcard">
+                <div class="pmeta"><h3>{p.data.nom}</h3><span class="tag"><em>Secteur</em>{p.data.secteur}</span></div>
+                <div class="compare">
+                  <img class="shot" src={p.data.image} alt={p.data.alt} width={p.data.largeur} height={p.data.hauteur} loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
