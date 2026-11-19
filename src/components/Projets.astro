@@ -6,7 +6,7 @@ const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b
     <div class="wrap">
       <div class="sec-head">
         <h2><span class="mask"><span>Projets</span></span></h2>
-        <p data-up>Des sites et des outils pour des entreprises d’Alsace et des Vosges, chacun dessiné pour son métier.</p>
+        <p data-up>Des sites et des outils pour des entreprises de tous métiers, chacun dessiné pour le sien.</p>
       </div>
       <div class="projects" data-reveal>
         {projets.map((p, i) => {

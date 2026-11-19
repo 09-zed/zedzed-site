@@ -7,15 +7,14 @@
   const edgeCheck = () => edge.classList.toggle('off', innerHeight + scrollY >= document.documentElement.scrollHeight - 8);
   addEventListener('scroll', edgeCheck, { passive: true }); addEventListener('resize', edgeCheck); edgeCheck();
 
-  // Footer : hauteur réservée sous la page, logo qui monte pendant la révélation, heure de Strasbourg
+  // Footer : hauteur réservée sous la page, logo qui monte pendant la révélation, 
   const ftWrap = document.querySelector('.ft-wrap'), ft = document.querySelector('.ft'), ftLogo = document.querySelector('.ft-logo span');
   const ftSize = () => { ftWrap.style.setProperty('--fh', ft.offsetHeight + 'px'); ft.classList.toggle('flat', ft.offsetHeight > innerHeight - 40); };
   addEventListener('resize', ftSize);
   new ResizeObserver(ftSize).observe(ft); ftSize();
   const ftMove = () => { const r = ftWrap.getBoundingClientRect(); const p = Math.min(Math.max((innerHeight - r.top) / r.height, 0), 1); ftLogo.style.setProperty('--ly', (18 * (1 - p)).toFixed(2) + '%'); };
   if (!reduce) { addEventListener('scroll', () => requestAnimationFrame(ftMove), { passive: true }); ftMove(); } else ftLogo.style.setProperty('--ly', '0%');
-  const clock = document.querySelector('.clock'), fmt = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
-  const tick = () => { clock.textContent = fmt.format(new Date()); }; tick(); setInterval(tick, 15000);
+
 
   // Footer : calendrier Cal.com, chargé seulement quand on approche du bas de page
   const calBox = document.getElementById('cal-zedzed');

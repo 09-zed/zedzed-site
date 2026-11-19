@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import { site } from '../data/site';
 interface Props { title?: string; description?: string; noindex?: boolean }
-const { title = 'zedzed — Studio de design et de développement web à Strasbourg', description = site.description, noindex = false } = Astro.props;
+const { title = 'zedzed — Studio de design et de développement web', description = site.description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL('/og.jpg', site.url).href;
 const jsonld = {
@@ -13,8 +13,7 @@ const jsonld = {
   url: site.url,
   email: site.email,
   image: ogImage,
-  address: { '@type': 'PostalAddress', addressLocality: site.ville, addressRegion: site.region, addressCountry: 'FR' },
-  areaServed: [{ '@type': 'AdministrativeArea', name: 'Grand Est' }, { '@type': 'AdministrativeArea', name: 'Alsace' }],
+  areaServed: { '@type': 'Country', name: 'France' },
   ...(site.linkedin ? { sameAs: [site.linkedin] } : {}),
 };
 ---
