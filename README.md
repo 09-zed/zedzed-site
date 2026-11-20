@@ -25,7 +25,7 @@ Ajouter un projet : copier `src/content/projets/coverlys.md`, changer les champs
 
 ## À compléter avant la mise en ligne
 
-- [ ] Mentions légales : nom de l’entreprise, forme juridique, SIRET, adresse, directeur de publication (`src/pages/mentions-legales.astro`)
+- [x] Mentions légales
 - [ ] FAQ : remplacer `[DÉLAI]` (`src/components/Faq.astro`)
 - [ ] Avis clients (`src/data/avis.ts`)
 - [ ] Lien LinkedIn (`src/data/site.ts`)
