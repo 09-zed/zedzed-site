@@ -208,7 +208,7 @@ html:not(.js) .path-steps li{height:auto;padding-top:calc(var(--line) + 32px)}
   .path{--ico:52px;--line:84px}
   .path-ico{border-radius:14px}
   .path-bee{width:44px;height:44px;margin:-21px 0 0 -22px}
-  .js .path{padding-bottom:300px}
+  .js .path{padding-bottom:200px}
   html:not(.js) .path-steps{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.path-fill,.path-bee,.js .path-txt{transition:none}}
