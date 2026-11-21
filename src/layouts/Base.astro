@@ -21,7 +21,7 @@ const jsonld = {
       logo: { '@type': 'ImageObject', url: `${site.url}/icon-512.png`, width: 512, height: 512 },
       image: ogImage,
       areaServed: { '@type': 'Country', name: 'France' },
-      ...(site.linkedin ? { sameAs: [site.linkedin] } : {}),
+      ...([site.linkedin, site.x].some(Boolean) ? { sameAs: [site.linkedin, site.x].filter(Boolean) } : {}),
     },
     {
       '@type': 'WebSite',

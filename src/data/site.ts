@@ -4,5 +4,6 @@ export const site = {
   email: 'contact@zed-zed.com',
   cal: 'zedzed/20min',            // lien Cal.com, sans « https://cal.com/ »
   linkedin: 'https://www.linkedin.com/company/zed-zed',
+  x: 'https://x.com/zedze_d',
   description: 'zedzed, studio de design et de développement web. Sites vitrines, web apps et automatisations pour les entreprises partout en France, dessinés à la main et codés jusqu’au dernier détail.',
 };
