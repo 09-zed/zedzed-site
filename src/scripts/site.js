@@ -77,25 +77,36 @@
   if (!reduce) { addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true }); paint(); }
   }
 
-  // Méthode : l'image suit l'étape active
-  if (document.querySelector('.method ol')) {
-  const steps = [...document.querySelectorAll('[data-step]')];
-  const frames = [...document.querySelectorAll('.story-media .frame')];
-  let stepCur = 0;
-  const pick = () => {
-    const mid = innerHeight / 2; let best = 0, dist = Infinity;
-    steps.forEach((li, i) => { const r = li.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - mid); if (d < dist) { dist = d; best = i; } });
-    if (best === stepCur) return; stepCur = best;
-    steps.forEach((li, i) => li.classList.toggle('active', i === stepCur));
-    frames.forEach((f, i) => f.classList.toggle('on', i === stepCur));
-  };
-  const ol = document.querySelector('.method ol');
-  const prog = () => {
-    const r = ol.getBoundingClientRect();
-    ol.style.setProperty('--p', Math.min(Math.max((innerHeight / 2 - r.top) / r.height, 0), 1).toFixed(4));
-  };
-  addEventListener('scroll', () => requestAnimationFrame(() => { pick(); prog(); }), { passive: true }); pick(); prog();
-
+  // Méthode : section bloquée, l'abeille saute d'étape en étape par paliers
+  const pin = document.querySelector('[data-path]');
+  if (pin) {
+    const path = pin.querySelector('.path');
+    const steps = [...pin.querySelectorAll('.path-steps li')];
+    const n = steps.length;
+    let cur = -1;
+    const measure = () => {
+      const ico = steps[0].querySelector('.path-ico');
+      const last = steps[n - 1].querySelector('.path-ico');
+      path.style.setProperty('--dist', (last.offsetLeft - ico.offsetLeft) + 'px');
+    };
+    const place = () => {
+      steps.forEach(li => {
+        const ico = li.querySelector('.path-ico'), dot = li.querySelector('.path-dot');
+        ico.style.left = dot.style.left = li.offsetLeft + 'px';
+      });
+    };
+    const paint = () => {
+      const r = pin.getBoundingClientRect();
+      const p = Math.min(Math.max(-r.top / Math.max(r.height - innerHeight, 1), 0), 0.9999);
+      const s = Math.floor(p * n);
+      if (s === cur) return; cur = s;
+      path.style.setProperty('--p', (s / (n - 1)).toFixed(4));
+      steps.forEach((li, i) => { li.classList.toggle('done', i <= s); li.classList.toggle('now', i === s); });
+    };
+    const all = () => { place(); measure(); cur = -1; paint(); };
+    all();
+    addEventListener('resize', all);
+    addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true });
   }
 
   // Listes dépliables : une seule ouverte à la fois par liste
