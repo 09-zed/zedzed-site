@@ -196,19 +196,26 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
 .bee-svg{display:block;width:100%;height:100%;transform:rotate(90deg)}
 @media (prefers-reduced-motion:no-preference){.bee-svg{animation:bee-bob 560ms steps(1) infinite}}
 @keyframes bee-bob{0%{translate:0 0}50%{translate:0 -4px}}
-/* avec JS : une seule étape affichée à la fois, sous la ligne */
-.js .path{padding-bottom:clamp(250px,34vh,300px)}
-.js .path-txt{position:absolute;left:0;right:0;top:calc(var(--line) + clamp(40px,7vh,72px));opacity:0;transform:translate3d(0,16px,0);transition:opacity 250ms ease,transform 400ms var(--ease);pointer-events:none}
-.js .path-steps li.now .path-txt{opacity:1;transform:none;transition-delay:120ms;pointer-events:auto}
+/* ordinateur : les 4 étapes visibles, celle en cours ressort */
+.path-steps li{height:auto;padding-top:calc(var(--line) + 40px)}
+.path-txt h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.02em;margin-bottom:8px}
+.path-txt p{font-size:17px}
+.path-txt b{margin-bottom:8px}
+.js .path-txt{opacity:.32;transition:opacity 400ms var(--ease)}
+.js .path-steps li.now .path-txt{opacity:1}
 /* sans JS : tout s'affiche, pas de blocage */
 html:not(.js) .method-pin{height:auto}
 html:not(.js) .grid-bg>.pin{position:relative;height:auto;padding:120px 0}
-html:not(.js) .path-steps li{height:auto;padding-top:calc(var(--line) + 32px)}
 @media (max-width:820px){
   .path{--ico:52px;--line:84px}
   .path-ico{border-radius:14px}
   .path-bee{width:44px;height:44px;margin:-21px 0 0 -22px}
+  .path-steps li{height:calc(var(--line) + 12px);padding-top:0}
+  .path-txt h3{font-size:clamp(32px,9vw,40px);margin-bottom:14px}
   .js .path{padding-bottom:200px}
+  .js .path-txt{position:absolute;left:0;right:0;top:calc(var(--line) + 40px);opacity:0;transform:translate3d(0,16px,0);transition:opacity 250ms ease,transform 400ms var(--ease);pointer-events:none}
+  .js .path-steps li.now .path-txt{opacity:1;transform:none;transition-delay:120ms;pointer-events:auto}
+  html:not(.js) .path-steps li{height:auto;padding-top:calc(var(--line) + 32px)}
   html:not(.js) .path-steps{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.path-fill,.path-bee,.js .path-txt{transition:none}}
