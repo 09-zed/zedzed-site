@@ -6,16 +6,33 @@ interface Props { title?: string; description?: string; noindex?: boolean }
 const { title = 'zedzed — Studio de design et de développement web', description = site.description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL('/og.jpg', site.url).href;
+const noms = ['zed zed', 'zed-zed', 'zedzed studio', 'studio zedzed'];
 const jsonld = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'zedzed',
-  description: site.description,
-  url: site.url,
-  email: site.email,
-  image: ogImage,
-  areaServed: { '@type': 'Country', name: 'France' },
-  ...(site.linkedin ? { sameAs: [site.linkedin] } : {}),
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${site.url}/#zedzed`,
+      name: 'zedzed',
+      alternateName: noms,
+      description: site.description,
+      url: `${site.url}/`,
+      email: site.email,
+      logo: { '@type': 'ImageObject', url: `${site.url}/icon-512.png`, width: 512, height: 512 },
+      image: ogImage,
+      areaServed: { '@type': 'Country', name: 'France' },
+      ...(site.linkedin ? { sameAs: [site.linkedin] } : {}),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#site`,
+      name: 'zedzed',
+      alternateName: noms,
+      url: `${site.url}/`,
+      inLanguage: 'fr-FR',
+      publisher: { '@id': `${site.url}/#zedzed` },
+    },
+  ],
 };
 ---
 <!DOCTYPE html>
@@ -36,6 +53,8 @@ const jsonld = {
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="zedzed">
+  <meta name="application-name" content="zedzed">
+  <meta name="apple-mobile-web-app-title" content="zedzed">
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
