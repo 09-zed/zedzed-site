@@ -77,34 +77,36 @@
   if (!reduce) { addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true }); paint(); }
   }
 
-  // Méthode : l'abeille avance d'étape en étape au fil du scroll
-  const path = document.querySelector('[data-path]');
-  if (path) {
-    const ol = path.querySelector('.path-steps');
-    const steps = [...ol.children];
-    const mq = matchMedia('(max-width:820px)');
-    let dist = 0;
+  // Méthode : section bloquée, l'abeille saute d'étape en étape par paliers
+  const pin = document.querySelector('[data-path]');
+  if (pin) {
+    const path = pin.querySelector('.path');
+    const steps = [...pin.querySelectorAll('.path-steps li')];
+    const n = steps.length;
+    let cur = -1;
     const measure = () => {
-      const last = steps[steps.length - 1], first = steps[0];
-      dist = mq.matches ? last.offsetTop - first.offsetTop : last.offsetLeft - first.offsetLeft;
-      path.style.setProperty('--dist', dist + 'px');
+      const ico = steps[0].querySelector('.path-ico');
+      const last = steps[n - 1].querySelector('.path-ico');
+      path.style.setProperty('--dist', (last.offsetLeft - ico.offsetLeft) + 'px');
+    };
+    const place = () => {
+      steps.forEach(li => {
+        const ico = li.querySelector('.path-ico'), dot = li.querySelector('.path-dot');
+        ico.style.left = dot.style.left = li.offsetLeft + 'px';
+      });
     };
     const paint = () => {
-      let p = 1;
-      if (!reduce) {
-        const r = ol.getBoundingClientRect();
-        p = mq.matches
-          ? (innerHeight * 0.55 - (r.top + 26)) / Math.max(dist, 1)
-          : (innerHeight * 0.8 - r.top) / (innerHeight * 0.5);
-        p = Math.min(Math.max(p, 0), 1);
-      }
-      path.style.setProperty('--p', p.toFixed(4));
-      const n = steps.length - 1;
-      steps.forEach((li, i) => li.classList.toggle('active', p * n >= i - 0.02));
+      const r = pin.getBoundingClientRect();
+      const p = Math.min(Math.max(-r.top / Math.max(r.height - innerHeight, 1), 0), 0.9999);
+      const s = Math.floor(p * n);
+      if (s === cur) return; cur = s;
+      path.style.setProperty('--p', (s / (n - 1)).toFixed(4));
+      steps.forEach((li, i) => { li.classList.toggle('done', i <= s); li.classList.toggle('cur', i === s); });
     };
-    measure(); paint();
-    addEventListener('resize', () => { measure(); paint(); });
-    if (!reduce) addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true });
+    const all = () => { place(); measure(); cur = -1; paint(); };
+    all();
+    addEventListener('resize', all);
+    addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true });
   }
 
   // Listes dépliables : une seule ouverte à la fois par liste
