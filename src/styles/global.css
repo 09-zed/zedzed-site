@@ -90,8 +90,9 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
   .hero .hero-in{padding-top:104px;padding-bottom:48px}
   .hz-l1 .hz-m,.hz-l2 .hz-m,.hz-l3 .hz-m{grid-column:1/5;padding-left:0}
   .hz-ln .hz-tile{display:none}
-  .hz-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-  .hz-strip .hz-tile{height:auto;aspect-ratio:4/3}
+  .hz-strip{display:grid;grid-template-columns:1875fr 1727fr;gap:12px;margin-top:28px}
+  .hz-strip .hz-tile{height:auto;aspect-ratio:1200/640}
+  .hz-strip .hz-tile+.hz-tile{aspect-ratio:1000/579}
   .hz-foot p,.hz-foot .act{grid-column:1/5;margin-left:0}
   .hz-foot .where{display:none}
   .hero.grid-bg::before{background:repeating-linear-gradient(to right,var(--gl) 0 1px,transparent 1px calc(100% / 4))}
@@ -177,7 +178,6 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
 .method-pin{height:360svh}
 .grid-bg>.pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
 .pin>.wrap{width:100%}
-.path-title{margin:0 0 clamp(32px,6vh,64px);font-weight:700;font-size:clamp(34px,4.4vw,64px);line-height:1;letter-spacing:-.035em}
 .path{--p:0;--dist:0px;--ico:72px;--line:112px;position:relative}
 .path-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,3vw,48px);position:relative}
 .path-steps li{position:static;height:calc(var(--line) + 12px)}
@@ -187,6 +187,7 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
 .path-steps li.done .path-ico{background:var(--cobalt);color:var(--lait)}
 .path-steps li.done .path-dot{background:var(--cobalt);box-shadow:inset 0 0 0 2px var(--cobalt)}
 .path-txt{max-width:46ch}
+.path-txt b .lab{display:none}
 .path-txt b{display:block;font-weight:700;font-size:15px;color:var(--cobalt);margin-bottom:12px}
 .path-txt h3{margin:0 0 14px;font-weight:700;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.03em;text-wrap:balance}
 .path-txt p{margin:0;font-size:clamp(17px,1.5vw,21px);line-height:1.5;color:var(--encre-douce)}
@@ -212,6 +213,7 @@ html:not(.js) .grid-bg>.pin{position:relative;height:auto;padding:120px 0}
   .path-bee{width:44px;height:44px;margin:-21px 0 0 -22px}
   .path-steps li{height:calc(var(--line) + 12px);padding-top:0}
   .path-txt h3{font-size:clamp(32px,9vw,40px);margin-bottom:14px}
+  .path-txt b .lab{display:inline}
   .js .path{padding-bottom:200px}
   .js .path-txt{position:absolute;left:0;right:0;top:calc(var(--line) + 40px);opacity:0;transform:translate3d(0,16px,0);transition:opacity 250ms ease,transform 400ms var(--ease);pointer-events:none}
   .js .path-steps li.now .path-txt{opacity:1;transform:none;transition-delay:120ms;pointer-events:auto}
