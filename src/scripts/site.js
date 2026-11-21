@@ -77,25 +77,34 @@
   if (!reduce) { addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true }); paint(); }
   }
 
-  // Méthode : l'image suit l'étape active
-  if (document.querySelector('.method ol')) {
-  const steps = [...document.querySelectorAll('[data-step]')];
-  const frames = [...document.querySelectorAll('.story-media .frame')];
-  let stepCur = 0;
-  const pick = () => {
-    const mid = innerHeight / 2; let best = 0, dist = Infinity;
-    steps.forEach((li, i) => { const r = li.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - mid); if (d < dist) { dist = d; best = i; } });
-    if (best === stepCur) return; stepCur = best;
-    steps.forEach((li, i) => li.classList.toggle('active', i === stepCur));
-    frames.forEach((f, i) => f.classList.toggle('on', i === stepCur));
-  };
-  const ol = document.querySelector('.method ol');
-  const prog = () => {
-    const r = ol.getBoundingClientRect();
-    ol.style.setProperty('--p', Math.min(Math.max((innerHeight / 2 - r.top) / r.height, 0), 1).toFixed(4));
-  };
-  addEventListener('scroll', () => requestAnimationFrame(() => { pick(); prog(); }), { passive: true }); pick(); prog();
-
+  // Méthode : l'abeille avance d'étape en étape au fil du scroll
+  const path = document.querySelector('[data-path]');
+  if (path) {
+    const ol = path.querySelector('.path-steps');
+    const steps = [...ol.children];
+    const mq = matchMedia('(max-width:820px)');
+    let dist = 0;
+    const measure = () => {
+      const last = steps[steps.length - 1], first = steps[0];
+      dist = mq.matches ? last.offsetTop - first.offsetTop : last.offsetLeft - first.offsetLeft;
+      path.style.setProperty('--dist', dist + 'px');
+    };
+    const paint = () => {
+      let p = 1;
+      if (!reduce) {
+        const r = ol.getBoundingClientRect();
+        p = mq.matches
+          ? (innerHeight * 0.55 - (r.top + 26)) / Math.max(dist, 1)
+          : (innerHeight * 0.8 - r.top) / (innerHeight * 0.5);
+        p = Math.min(Math.max(p, 0), 1);
+      }
+      path.style.setProperty('--p', p.toFixed(4));
+      const n = steps.length - 1;
+      steps.forEach((li, i) => li.classList.toggle('active', p * n >= i - 0.02));
+    };
+    measure(); paint();
+    addEventListener('resize', () => { measure(); paint(); });
+    if (!reduce) addEventListener('scroll', () => requestAnimationFrame(paint), { passive: true });
   }
 
   // Listes dépliables : une seule ouverte à la fois par liste
