@@ -199,7 +199,7 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
 /* avec JS : une seule étape affichée à la fois, sous la ligne */
 .js .path{padding-bottom:clamp(250px,34vh,300px)}
 .js .path-txt{position:absolute;left:0;right:0;top:calc(var(--line) + clamp(40px,7vh,72px));opacity:0;transform:translate3d(0,16px,0);transition:opacity 250ms ease,transform 400ms var(--ease);pointer-events:none}
-.js .path-steps li.cur .path-txt{opacity:1;transform:none;transition-delay:120ms;pointer-events:auto}
+.js .path-steps li.now .path-txt{opacity:1;transform:none;transition-delay:120ms;pointer-events:auto}
 /* sans JS : tout s'affiche, pas de blocage */
 html:not(.js) .method-pin{height:auto}
 html:not(.js) .grid-bg>.pin{position:relative;height:auto;padding:120px 0}

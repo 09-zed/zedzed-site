@@ -101,7 +101,7 @@
       const s = Math.floor(p * n);
       if (s === cur) return; cur = s;
       path.style.setProperty('--p', (s / (n - 1)).toFixed(4));
-      steps.forEach((li, i) => { li.classList.toggle('done', i <= s); li.classList.toggle('cur', i === s); });
+      steps.forEach((li, i) => { li.classList.toggle('done', i <= s); li.classList.toggle('now', i === s); });
     };
     const all = () => { place(); measure(); cur = -1; paint(); };
     all();
