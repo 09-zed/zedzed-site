@@ -340,7 +340,7 @@ html:not(.js) .grid-bg>.pin{position:relative;height:auto;padding:120px 0}
 .grid-bg>*{position:relative;z-index:1}
 .grid-dark{--gl:rgba(243,242,255,.09)}
 .js .grid-bg:not(.hero)::before{transform:scaleY(0)}
-.js .grid-bg.in::before{transform:none}
+.js .grid-bg.in::before,.js .ft.grid-bg::before{transform:none}
 
 /* ---------- Système de mouvement : l'écho ---------- */
 .mask{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
