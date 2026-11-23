@@ -116,8 +116,11 @@
   }));
 
 
+  // Effets souris : activés au chargement si le navigateur annonce une souris,
+  // sinon au premier vrai mouvement de souris (PC à écran tactile qui ne la déclare pas)
+  const initMouse = () => {
   // Services : le bleu part de l'entrée de la souris et se rétracte vers la sortie
-  if (fine) document.querySelectorAll('.svc-row').forEach(row => {
+  document.querySelectorAll('.svc-row').forEach(row => {
     const fill = row.querySelector('.svc-fill');
     const at = e => {
       const r = row.getBoundingClientRect();
@@ -131,7 +134,7 @@
   });
 
   // 3. Echo cursor
-  if (fine) {
+  {
     document.body.classList.add('has-cursor');
     const dot = document.querySelector('.cur-dot'), echo = document.querySelector('.cur-echo'), label = dot.querySelector('em');
     let mx = -100, my = -100, ex = -100, ey = -100, size = 14, seen = false;
@@ -156,5 +159,8 @@
     };
     tick();
   }
+  };
+  if (fine) initMouse();
+  else addEventListener('pointermove', function first(e) { if (e.pointerType !== 'mouse') return; removeEventListener('pointermove', first); initMouse(); }, { passive: true });
 
 })();
