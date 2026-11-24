@@ -118,13 +118,14 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
 
 /* ---------- Projets : cartes empilées ---------- */
 .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(40px,4vw,64px) clamp(20px,2.4vw,40px)}
+@media (max-width:640px){.projects{grid-template-columns:minmax(0,1fr)}}
 .project{display:block;text-decoration:none;color:var(--encre)}
 .pcard{position:relative}
 .pcard{display:flex;flex-direction:column}
 .projects-more{display:flex;justify-content:center;margin-top:clamp(48px,5vw,72px)}
 .page-real{padding-top:clamp(140px,16vw,200px)}
 
-.pmeta{order:2;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0 0}
+.pmeta{order:2;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px;padding:18px 0 0}
 .pmeta h3{margin:0;font-weight:600;font-size:clamp(20px,1.8vw,26px);letter-spacing:-.02em;min-width:0}
 .pmeta .tag{flex:none;display:inline-flex;align-items:center;gap:.6em;min-height:40px;padding:0 18px;border-radius:999px;background:var(--lait);font-size:15px;font-weight:600;color:var(--encre);white-space:nowrap}
 .pmeta .tag em{font-style:normal;font-weight:500;color:var(--encre-douce)}
