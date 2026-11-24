@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import EdgeBlur from '../components/EdgeBlur.astro';
+import Projets from '../components/Projets.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+---
+<Base title="Réalisations — sites et web apps | zedzed" description="Les sites et projets conçus par zedzed : identité, design et développement faits main, pour des entreprises partout en France.">
+  <Nav />
+  <EdgeBlur />
+  <main id="contenu">
+    <Projets />
+  </main>
+  <Footer />
+  <Cursor />
+  <script src="../scripts/site.js"></script>
+</Base>

@@ -6,6 +6,6 @@ alt: "Page d’accueil du site Courbe Automobiles : une voiture rouge de profil 
 largeur: 2000
 hauteur: 1250
 vignetteHero: /img/proj-courbe-tile.webp
-ordre: 2
+ordre: 3
 ---
 Concession automobile. Site vitrine.

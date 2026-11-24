@@ -7,6 +7,7 @@ largeur: 1536
 hauteur: 960
 lien: https://nova-studio-six-rosy.vercel.app/
 concept: true
-ordre: 3
+accueil: true
+ordre: 2
 ---
 Projet concept : studio de branding Instagram et TikTok. Landing page, DA et code faits main.

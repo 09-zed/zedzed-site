@@ -1,11 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
-const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b.data.ordre);
+// accueil : section de la page d'accueil (projets marqués accueil: true + lien vers /realisations/).
+// Sans accueil : page /realisations/, tous les projets, titre en h1.
+const { accueil = false } = Astro.props;
+const tous = (await getCollection('projets')).sort((a, b) => a.data.ordre - b.data.ordre);
+const projets = accueil ? tous.filter(p => p.data.accueil) : tous;
+const Titre = accueil ? 'h2' : 'h1';
 ---
-<section class="section grid-bg" id="travaux" data-reveal>
+<section class:list={["section grid-bg", { "page-real": !accueil }]} id="travaux" data-reveal>
     <div class="wrap">
       <div class="sec-head">
-        <h2><span class="mask"><span>Projets</span></span></h2>
+        <Titre><span class="mask"><span>{accueil ? 'Projets' : 'Réalisations'}</span></span></Titre>
         <p data-up>Des sites et des outils pour des entreprises de tous métiers, chacun dessiné pour le sien.</p>
       </div>
       <div class="projects" data-reveal>
@@ -23,5 +28,8 @@ const projets = (await getCollection('projets')).sort((a, b) => a.data.ordre - b
           );
         })}
       </div>
+      {accueil && tous.length > projets.length && (
+        <div class="projects-more" data-up><a class="btn on-light" href="/realisations/"><span class="t"><span>Voir toutes les réalisations</span><span aria-hidden="true">Voir toutes les réalisations</span></span></a></div>
+      )}
     </div>
   </section>

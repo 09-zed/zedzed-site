@@ -7,6 +7,7 @@ largeur: 2000
 hauteur: 1252
 lien: https://coverlys.fr
 vignetteHero: /img/proj-coverlys-tile.webp
+accueil: true
 ordre: 1
 ---
 Bardage, couverture et étanchéité dans tout le Grand Est. Site vitrine.

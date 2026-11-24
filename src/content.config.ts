@@ -15,6 +15,7 @@ const projets = defineCollection({
     lien: z.string().url().optional(),   // site en ligne, si on veut rendre la carte cliquable
     vignetteHero: z.string().optional(), // petite image du hero, si le projet y apparaît
     concept: z.boolean().optional(),   // projet concept (marque fictive) : affiché « Concept » au lieu de « Secteur »
+    accueil: z.boolean().optional(),   // affiché sur la page d'accueil (2 projets max) ; tous sont sur /realisations/
     ordre: z.number(),
   }),
 });
