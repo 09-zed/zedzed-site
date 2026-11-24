@@ -1,8 +1,8 @@
 ---
 nom: Courbe Automobiles
 secteur: Automobile
-image: /img/proj-courbe.webp
-alt: "Page d’accueil du site Courbe Automobiles : une voiture rouge de profil au-dessus du titre « Une sélection de voitures à conduire. »"
+image: /img/proj-courbe-v2.webp
+alt: "Deux pages du site Courbe Automobiles superposées : l’accueil avec une voiture rouge de profil, et les sections des prochains arrivages et de l’inscription aux alertes"
 largeur: 2000
 hauteur: 1250
 vignetteHero: /img/proj-courbe-tile.webp
